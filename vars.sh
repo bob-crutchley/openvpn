@@ -1,10 +1,10 @@
 #! /bin/bash
-export EASY_RSA="`pwd`"
+export EASY_RSA="~/ca"
 export OPENSSL="openssl"
 export PKCS11TOOL="pkcs11-tool"
 export GREP="grep"
 export KEY_CONFIG="$EASY_RSA/openssl-1.0.0.cnf"
-export KEY_DIR="$EASY_RSA/keys"
+export KEY_DIR="${EASY_RSA}/keys"
 export PKCS11_PIN="dummy"
 export KEY_SIZE=2048
 export CA_EXPIRE=3650

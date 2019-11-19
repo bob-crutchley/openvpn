@@ -4,6 +4,7 @@
 sudo apt install -y openvpn easy-rsa
 
 source vars.sh
+PATH=/usr/share/easy-rsa:$PATH
 
 sudo cp server.conf /etc/openvpn/server.conf
 mkdir -p ~/.ovpn
@@ -14,13 +15,13 @@ sed "s/{{OVPN_PUBLIC_IP}}/$(curl ifconfig.me)/g" client.conf > ~/.ovpn/client.co
 make-cadir ca
 cd ca
 
-./clean-all
-./build-ca --batch
-./build-key-server --batch server 
+clean-all
+build-ca --batch
+build-key-server --batch server 
 
 # default client cert & key
-./build-key --batch client
-./build-dh
+build-key --batch client
+build-dh
 
 sudo cp keys/{ ca.crt server.crt server.key dh2048.pem } /etc/openvpn/server
 cp keys/{ ca.crt client.crt client.key } ~/.ovpn

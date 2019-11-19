@@ -26,3 +26,4 @@ sudo cp keys/{ ca.crt server.crt server.key dh2048.pem } /etc/openvpn/server
 cp keys/{ ca.crt client.crt client.key } ~/.ovpn
 
 sudo systemctl start openvpn@server
+

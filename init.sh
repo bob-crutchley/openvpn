@@ -12,19 +12,18 @@ sed "s/{{OVPN_PUBLIC_IP}}/$(curl ifconfig.me)/g" client.ovpn > ~/.ovpn/client.ov
 sed "s/{{OVPN_PUBLIC_IP}}/$(curl ifconfig.me)/g" client.conf > ~/.ovpn/client.conf
 
 # configure ca
-make-cadir ca
-mkdir -p ~/.ca-keys
+make-cadir ${EASY_RSA}
+mkdir -p ${EASY_RSA}
 
 clean-all
 build-ca --batch
-build-key-server --batch server 
+build-key-server --batch server
 
 # default client cert & key
 build-key --batch client
 build-dh
 
-sudo cp keys/{ ca.crt server.crt server.key dh2048.pem } /etc/openvpn/server
-cp ~/ca/keys/{ ca.crt client.crt client.key } ~/.ovpn
+sudo cp ${KEY_DIR}/{ca.crt,server.crt,server.key,dh2048.pem} /etc/openvpn/server
+cp ${KEY_DIR}/{ca.crt,client.crt,client.key} ~/.ovpn
 
 sudo systemctl start openvpn@server
-

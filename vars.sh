@@ -1,5 +1,5 @@
 #! /bin/bash
-export EASY_RSA="~/ca"
+export EASY_RSA="${HOME}/ca"
 export OPENSSL="openssl"
 export PKCS11TOOL="pkcs11-tool"
 export GREP="grep"
